@@ -1,52 +1,70 @@
 \section{Analysis}\label{sc:analysis}
 In order to asses the correct progress of the rnucs-mesh workflow, a few 
-analysis were performed. 
+analysis were performed on two toy problems. 
 
-\subsection{Geometries}
+\subsection{Problem Description}
 Two toy problems were identified to asses the correctness of the 
 rnuc-mesh workflow. 
-Toy problem 1 consists of a mercury box with geometrical especification as 
-listed in Table \ref{tab:geom_dim} 
-Toy problem 2 consists of a mercury box surrounded by a steel box. The 
+Toy problem 1 (Figure \ref{tp1}) consists of a mercury box with geometrical specifications as 
+listed in Table \ref{tab:geom_dim}. 
+Toy problem 2 (Figure \ref{tp2}) consists of a mercury box surrounded by a steel box. The 
 specifications can be found in Table \ref{tab:geom_dim}
+
 
 % ------------- Geometry specification table ------------------------
 \begin{table}[ht]
+\begin{centering}
 \begin{tabular}{|c|c|c|c|}
   \hline
   Geometry       & X position (cm) & Y position (cm) & Z position (cm) \\
   \hline  \hline
-  Toy problem 1  & -11, 11         & -22, 22         & -93, 93         \\
+  Toy problem I  & -11, 11         & -22, 22         & -93, 93         \\
   \hline
-  Toy problem 2  & -22, 22         & -44, 44         & -186, 186       \\
+  Toy problem II  & -22, 22         & -44, 44         & -186, 186       \\
   \hline
 \end{tabular}
 \caption{Toy problems dimensions}
 \label{tab:geom_dim}
+\end{centering}
 \end{table}
 
+All problems were run with a 1 GeV proton source in the z direction and 
+with 1E6 particles. 
 
 Six geometries were created, three for each toy problem. 
 The first geometry was built as  described above, the second geometry 
 was split into 8 equal cells and the last one was split 64 equal cells. 
-
-Spliting toy problem 2 into 8 equal cells required that the materials 
+Splitting toy problem 2 into 8 equal cells required that the materials 
 be mixed in a 3:1 ratio
 
 
-\subsection{Monte Carlo Run}
-All problems were run with a 1 GeV proton source in the z direction and 
-with 1E6 particles. 
+\subsection{Workflow to Photon Emissions}
+
+In oder to generate the spectrum file, the following steps were carried out:
+\begin{itemize}
+\item MCNP run 
+\item Generation of 
+\end{itemize}
 The following runs were performed:
 
-\begin{list}
-- rnucs on cells 
-- 1x1x1 mesh
-- 2x2x2 mesh
-- 4x4x4 mesh 
-- 2x2x2 split
-- 4x4x4 split
-\end{list}
+\begin{itemize}
+  \item rnucs on cells 
+  \item 1x1x1 mesh
+  \item 2x2x2 mesh
+  \item 4x4x4 mesh 
+  \item 2x2x2 split
+  \item 4x4x4 split
+\end{itemize}
+
+Each mesh covered the entire geometry and was uniformly distributed. 
+Splitting toy problem II into 8 equal parts required the mixed material to be created. 
+The mixed material was 3:1 ratio of steel and mercury. 
+
+\subsection{Activation}
+
+An activation calculation was done for each run for a set of irradiation history. 
+
+
 
 
 
