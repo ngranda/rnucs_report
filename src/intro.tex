@@ -1,1 +1,29 @@
-\section{Introduction}\label{ch:intro}
+\section{Introduction}\label{sc:intro}
+This report covers the work performed at UW in efforts to create a mesh rnucs 
+worflow.
+
+During operation of accelerator based system, like the Spallation Neutron
+Source (SNS), the nuclear reactions happening in the system produce high
+energy neutrons that penetrate deep into the components of the system.
+The materials of the components become activated from the neutron irradiation
+and release high energy photons that persists even after shutdown. These
+photons can negatively impact the health of a human body. During maintenance,
+personnel come in close contact with these components, therefore it becomes
+important to quantify the dose rates from these photons.
+Quantification of these dose rates in nuclear systems have traditionally been
+performed computationally and workflows exist to aid the calculation.
+A common way to solve these problems is by coupling the neutron transport and
+photon transport calculations using activation analysis, known as the Rigorous
+2 Step (R2S) method. The R2S method has been implemented at UW as an automated
+workflow with fidelity determined by a superimposed mesh, and has been added
+to the Python for Nuclear Engineers  (PyNE) package. The UW-R2S capabilities
+only extend to energies in the fusion system region (20 MeV) and future work
+need to be performed to extend the capabilities to accelerator systems.
+In higher energy regions such as those encountered in accelerator-based
+systems, R2S workflows have been developed to be able to perform a complete
+analysis in these systems. One such workflow relies on a radionuclide
+inventory tally (RNUCS) implemented in MCNPX to obtain reaction rates across
+the full energy spectrum.  These results are used during the activation step,
+producing photon sources, but with fidelity limited to individual geometric
+volumes.
+
