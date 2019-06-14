@@ -1,0 +1,36 @@
+\section{Implementation}
+The numerical experiments conducted in this work required the 
+development of a collection of scripts and patches that 
+ultimately form the Shutdown Dose Rate workflow as seen in Figure 
+\ref{mesh_rnucs}
+
+\begin{figure}[ht]
+\begin{centering}
+\includegraphics[scale=0.4]{../figs/mesh_rnucs_r2s.png}
+\caption{Mesh RNUCS Workflow}
+\label{mesh_rnucs}
+\end{centering}
+\end{figure}
+
+
+\subsection{MCNP Patch}
+The first step in the rnucs R2S workflow is the neutron transport step 
+therefore a  change in the MCNP source code was necessary in order to 
+collect radionuclide information in a mesh. 
+These MCNP changes were recorded in a patch file. This file should be applied 
+directly to MCNP6.1 after a DAGMC patch has been applied.
+This patch DAG-MCNP6.1 will output a file with the name $r\_mesh$ which stores 
+radionuclide information per voxel. 
+
+\subsection{Activation Script}
+A python script was created to collect mesh rnucs information from the $r\_mesh$
+file, flux information from a meshtal file, and material information from a 
+material laden CAD geometry. This collected information is then written out 
+in the correct format and in the right files that can be read by the activation 
+software CINDER90. 
+
+The original perl activation script is used to read a keyword "mesh" and call the 
+python script mentioned above, write an input file for each region/voxel and run 
+the CINDER90 and TABCODE software. 
+
+
