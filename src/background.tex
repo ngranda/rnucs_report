@@ -56,7 +56,7 @@ system of equations is given by Equation \ref{rate_change_sol}.
 \end{equation}
 
 
-\subsection{Shutdown Dose Rate Workflow}
+\subsection{Shutdown Dose Rate Analysis}
 
 A primary method to investigate the SDR is known as the
 Rigorous 2-Step (R2S) method. The R2S method consists of two transport steps
@@ -72,16 +72,34 @@ conversion factors.
 \subsection{Shutdown Dose Rate for High Energy Systems}
 One of the challeges presented when doing SDR analyses in high energy systems is the 
 lack of nuclear cross-section tables in the energies higher than 20 MeV. 
-Equation \ref{reaction_p_const} that in oder to obtain the reaction rate oifthe flux has to be folded 
-with reaction cross sections to obtain production and destruction rates.
+The reaction proportionality constant, Equation \ref{reaction_p_const}
+requires the neutron flux and the microscopic crossection of transmutting reaction. 
 To gap this bridge, some activation codes accept productions and destruction rates
-as their input.
-% This has previously been done by pos-processing high energy files from the 
-% neutron transport to obtain Production and Destruction cross sections.
+as their input. These production and destruction rates can be obtained from
+physics models implemented in MCNP codes.
+A radionuclide tally was implemented in MCNP to collect production and destruction
+rates in a given geometric cell. The tally is a collision tally and
+it collects reaction rates using the physics calculated
+cross sections. A reaction rate for any reaction is given by Equation
+\ref{reaction_rate_x}
 
-
-
-
+\begin{equation}\label{reaction_rate_x}
+  R_{x} = \Sigma_{x} \phi
+\end{equation}
+An estimate of the reaction rate is given by Equation \ref{reaction_rate_estimate}
+\begin{equation}\label{reaction_rate_estimate}
+  R_{x} = \frac{1}{W} \sum_{i \in A} w_{i}
+\end{equation}
+The flux can be estimated from a total reaction rate as seen in Equation
+\ref{flux}
+\begin{equation}\label{flux}
+  \phi = \frac{1}{W} \sum_{i \in A} \frac{w_{i}}{\Sigma_{t}(E_{i})}
+\end{equation}
+Using Equation \ref{reaction_rate_x} and Equation \ref{flux}, we can get
+the collision estimate of the reaction rate for reaction $x$
+\begin{equation}\label{reaction_x_estimate}
+  \phi = \frac{1}{W} \sum_{i \in A} \frac{w_{i} \Sigma_{x}(E_{i})}{\Sigma_{t}(E_{i})}
+\end{equation}
 The current SDR workflow is seen in Figure \ref{rnucs_r2s}
 \begin{figure}[h!]
 \begin{centering}
