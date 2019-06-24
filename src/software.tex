@@ -1,7 +1,11 @@
 \section{Implementation}
-The numerical experiments conducted in this work required the 
+The previous SDR workflow has a fidelity limited to individual
+geomtric volumes. The implementation discussed in this work
+supports spatial dicretization via superimposed Cartesian meshes. 
+This implemetation required the 
 development of a collection of scripts and patches that 
-ultimately form the Shutdown Dose Rate workflow as seen in Figure 
+ultimately form the SDR workflow for high energy systems 
+with spatial discretization. The workflow can be seen in Figure
 \ref{mesh_rnucs}
 
 \begin{figure}[ht]
@@ -14,9 +18,9 @@ ultimately form the Shutdown Dose Rate workflow as seen in Figure
 
 
 \subsection{MCNP Patch}
-The first step in the rnucs R2S workflow is the neutron transport step 
-therefore a  change in the MCNP source code was necessary in order to 
-collect radionuclide information in a mesh. 
+The first step in the SDR  workflow is the neutron transport step.
+Several changes in the MCNP source code were necessary in order to 
+collect radionuclide information in a superimposed mesh.
 These MCNP changes were recorded in a patch file. This file should be applied 
 directly to MCNP6.1 after a DAGMC patch has been applied.
 This patch DAG-MCNP6.1 will output a file with the name $r\_mesh$ which stores 
@@ -29,8 +33,8 @@ material laden CAD geometry. This collected information is then written out
 in the correct format and in the right files that can be read by the activation 
 software CINDER90. 
 
-The original perl activation script is used to read a keyword "mesh" and call the 
+The original perl activation script is used to read a keyword $mesh$ and call the 
 python script mentioned above, write an input file for each region/voxel and run 
 the CINDER90 and TABCODE software. 
 
-
+\newpage
