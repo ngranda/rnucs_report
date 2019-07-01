@@ -16,7 +16,7 @@ Toy problem I (shown in Figure \ref{TPI}) consists of a mercury rectangular pris
 \label{TPI}
 \end{centering}
 \end{figure}
-Toy problem II (shown in Figure \ref{TPII}) has a rectagular prism enclosing another rectagular
+Toy problem II (shown in Figure \ref{TPII}) has a rectangular prism enclosing another rectangular
 prism. 
 The mercury cell has the same dimensions as those of toy problem I. The steel 
 cell, which encloses the mercury, is double the size of the mercury cell. 
@@ -25,7 +25,6 @@ cell, which encloses the mercury, is double the size of the mercury cell.
 \begin{figure}[h!]
 \begin{centering}
 \includegraphics[width=0.70\linewidth]{../figs/mer_steel.png}
-%\includegraphics{../figs/mer_steel.png}
 \caption{Planar view of Toy Problem II geometry, 44 cm  x 88 cm x 372 cm }
 \label{TPII}
 \end{centering}
@@ -33,40 +32,33 @@ cell, which encloses the mercury, is double the size of the mercury cell.
 
 Both toy problems have a 1 GeV proton source located 
 along the negative z direction with distributions along the x and y directions.
-A total of six geometries were created, three for each toy problem. 
-The first geometry was built as described above, the second geometry 
-was split into 8 equal cells and the last one was split 64 equal cells.
+
+\subsubsection{Spatial Discretization}
+Several superimposed meshes were laid upon Toy Problem I and II. 
+The superimposed meshes were 1x1x1, 2x2x2, and 4x4x4. Both toy problems
+were also split into 8 equal pieces and 64 equal pieces creating a total of
+six distint geometries including the originals. 
 Splitting toy problem II into 8 equal cells required some material mixing. 
 Each cell in this particular geometry was assigned a steel-mercury mixture
 of 3:1. 
+This splitting was done in order to compare to the mesh problems. 
 
 \subsection{Workflow to Photon Emissions}
-In oder to generate the spectrum file, the following steps were carried out:
+In order to generate the spectrum file, the following steps were carried out:
 \begin{itemize}
-\item MCNP run 
-\item Generation of 
+\item Monte Carlo transport using MCNP 
+\item Activation script was run to create the input files for CINDER and  run CINDER
 \end{itemize}
-The following runs were performed:
-
+A total of 12 problems were run, six for each toy problem. The runs were as follows:
 \begin{itemize}
-  \item rnucs on cells 
-  \item 1x1x1 mesh
-  \item 2x2x2 mesh
-  \item 4x4x4 mesh 
-  \item 2x2x2 split
-  \item 4x4x4 split
+\item Cell rnucs. Mercury cell for Toy Problem I and Mercury and Steel cell for 
+Toy Problem II.
+\item 1x1x1 uniformly distributed mesh superimposed on the whole problem
+\item 2x2x2 uniformly distributed mesh superimposed on the whole problem
+\item 4x4x4 uniformly distributed mesh superimposed on the whole problem
+\item Geometry split into 8 equal pieces
+\item Geometry split into 64 equal pieces
 \end{itemize}
-
-Each mesh covered the entire geometry and was uniformly distributed. 
-Splitting toy problem II into 8 equal parts required the mixed material to be created. 
-The mixed material was 3:1 ratio of steel and mercury. 
-p
-Each case mentioned below was run with 1E6 history particles. 
-\subsection{Activation}
-
-An activation calculation was done for each run for a set of irradiation history. 
-
-
-
+Each case was run with 1E6 history particles. 
 
 \newpage
