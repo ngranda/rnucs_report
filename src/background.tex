@@ -13,7 +13,7 @@ in order to quantify the photon emission density as a function of time.
 The rate of change in the concentration of nuclide $i$ is given by the 
 difference between the production rate and destruction rate of that nuclide.
 The rate in which a nuclide undergoes transmutation to some other nuclide
-is porportional to its concentration. 
+is proportional to its concentration. 
 \begin{equation}\label{rate_change_i}
   \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}P_{j \rightarrow i, total}
   - \sum_{j} N_{i}P_{i \rightarrow j, total}
@@ -24,7 +24,7 @@ proportionality constant is given by Equation \ref{total_p_const}.
   P_{i \rightarrow j, total} = P_{i \rightarrow j, reaction } +
   P_{i \rightarrow j, decay}
 \end{equation}
-For the reaction process, the porpotionality constant is given by
+For the reaction process, the proportionality constant is given by
 Equation \ref{reaction_p_const}
 \begin{equation}\label{reaction_p_const}
   P_{i \rightarrow j, reaction } =
@@ -49,7 +49,7 @@ a systems of linear differential equations and is represented by Equation
   \frac{d\vec{N}}{dt} =\boldsymbol{A}  \vec{N}(t)
 \end{equation}
 where $\vec{N}(t)$ is the vector of all nuclide concentration and $boldsymbol{A}$
-is the transfer matrix of production and desctruction rates. The solution to this
+is the transfer matrix of production and destruction rates. The solution to this
 system of equations is given by Equation \ref{rate_change_sol}.
 \begin{equation}\label{rate_change_sol}
   \vec{N} =\vec{N}_{o} e^{\boldsymbol{A}t}
@@ -62,18 +62,18 @@ A primary method to investigate the SDR is known as the
 Rigorous 2-Step (R2S) method. The R2S method consists of two transport steps
 coupled by an activation step. 
 The first transport calculation is performed, and the neutron flux tallied.
-The neutron fluxes, and an irradiation scenerio are used in an activation
-calculation using a dedicated nuclear iventory analysis code to give the 
+The neutron fluxes, and an irradiation scenario are used in an activation
+calculation using a dedicated nuclear inventory analysis code to give the 
 photon density in the region as function of time. 
 This photon density is then used as a source for photon transport,
 where the SDR is tallied using a tally modified with flux-to-dose-rate
 conversion factors.
 
 \subsection{Shutdown Dose Rate for High Energy Systems}
-One of the challeges presented when doing SDR analyses in high energy systems is the 
+One of the challenges presented when doing SDR analyses in high energy systems is the 
 lack of nuclear cross-section tables in the energies higher than 20 MeV. 
 The reaction proportionality constant, Equation \ref{reaction_p_const}
-requires the neutron flux and the microscopic crossection of transmutting reaction. 
+requires the neutron flux and the microscopic crossection of transmuting reaction. 
 To gap this bridge, some activation codes accept productions and destruction rates
 as their input. These production and destruction rates can be obtained from
 physics models implemented in MCNP codes.
