@@ -26,18 +26,25 @@ directly to MCNP6.1 after a DAGMC patch has been applied.
 This patch DAG-MCNP6.1 will output a file with the name $r\_mesh$ which stores 
 radionuclide information per voxel.
 \subsubsection{Data Structure}
+One key difference between the cell based rnucs R2S workflow and the mesh based
+rnucs R2S workflow is the size of the array in which the data is stored.
 The radionuclide production data for a cell is saved in a 1D array with
-size $3*mnad$, where $mnad$ is the number of all possible isotopes
+size $3*mnad$, where $mnad$ is the number of all possible nuclides
 that can be created.
+The nuclides that can be created in an spallation reaction
+depend on the target nuclei. If the target nuclei has a mass
+number A, then any nuclei with mass number A down to 1 can be
+produced. In the rnucs patch this number comes from an isotope table
+given as part of the input data. 
+
 The radionuclide destruction data for a cell is also saved in a 1D array
-with size $3*mndd$, where $mndd$ is the number of isotopes that make up
-the material in the cell
+with size $3*mndd$, where $mndd$ is the number of nuclides that make up
+the material in the cell. 
 
 The radionuclide production data for a mesh is saved in a 4D array
 with size $(nxb, nyb,nzb, 3*mnad)$, where $nxb, nyb, nzb$ are the
 number of bins in the $x$, $y$, and $z$ respectively. $mnad$ is the
-number of isotopes posibles.
-The possible produced isotopes are
+number of all possible nuclides that can be created. 
 
 \subsection{Activation Script}
 A python script was created to collect mesh rnucs information from the $r\_mesh$
