@@ -6,20 +6,44 @@ workflow.
 %%
 The rate of change of nuclear concentration is given by
 \begin{equation}\label{eq:nuclide_conc_rc}
-    \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}P_{j \rightarrow i, total}
-    - \sum_{j} N_{i}P_{i \rightarrow j, total}
+    \frac{dn_{i}(t)}{dt} = \sum_{j} n_{j}p_{j \rightarrow i, total}
+    - \sum_{j} n_{i}p_{i \rightarrow j, total}
 \end{equation}
 %%
 %%
-A vector form is given by
+For multiple nuclides this becomes a system of differential equations and
+can be represented in the following notation
 \begin{equation}\label{eq:nuclide_conc_rc_vec}
   \frac{d\vec{N}}{dt} =\boldsymbol{A}  \vec{N}(t)
 \end{equation}
 %%
 %%
 A solution to the system of differential equations is given by equation \ref{eq:rate_change_sol}
-\begin{equation}\label{rate_change_sol}
+\begin{equation}\label{eq:rate_change_sol}
   \vec{N} =\vec{N}_{o} e^{\boldsymbol{A}t}
 \end{equation}
-The analytical solution is given by the Bateman equations
+A way to solve Equation \ref{eq:rate_change_sol} is to break the transmutation network
+into a collection of linear chains so that each isotope has one production term and
+one destruction term making the $\boldsymbol{A}$ matrix bidiagonal allowing a solution
+in the form of the Bateman Equation.
+\begin{equation}\label{eq:bateman}
+  N_{i}(t) = \sum_{j=1}^{i} N_{j}(0)
+  \Bigg[ \Bigg( \prod_{k=j}^{i-1} P_{k} \Bigg)
+  \Bigg(\sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\prod_{l=j,\neq k}^{i}(d_{l} -d_{k})}
+  \Bigg)
+  \Bigg]
+\end{equation}
+where $d$ represents the destruction term and $P$ the production ter term
+%%
+%%
+When there is not nuclear data availble, like is the case for high energy interactions,
+another term is introduced in Equation \ref{eq:nuclide_conc_rc}. This term is a
+production rate constant.
+\begin{equation}\label{eq:nuclide_conc_rc_he}
+    \frac{dn_{i}(t)}{dt} = \sum_{j} n_{j}p_{j \rightarrow i, total}
+    - \sum_{j} n_{i}p_{i \rightarrow j, total} + Y_{i}
+\end{equation}
+%%
+%%
+The system of differential
 
