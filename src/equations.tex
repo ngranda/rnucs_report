@@ -6,21 +6,21 @@ workflow.
 %%
 The rate of change of nuclear concentration is given by
 \begin{equation}\label{eq:nuclide_conc_rc}
-    \frac{dn_{i}(t)}{dt} = \sum_{j} n_{j}p_{j \rightarrow i, total}
-    - \sum_{j} n_{i}p_{i \rightarrow j, total}
+    \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}(t)P_{j \rightarrow i, total}
+    - \sum_{j} N_{i}(t)P_{i \rightarrow j, total}
 \end{equation}
 %%
 %%
 For multiple nuclides this becomes a system of differential equations and
 can be represented in the following notation
 \begin{equation}\label{eq:nuclide_conc_rc_vec}
-  \frac{d\vec{N}}{dt} =\boldsymbol{A}  \vec{N}(t)
+  \frac{d\vec{N}(t)}{dt} =\boldsymbol{A}  \vec{N}(t)
 \end{equation}
 %%
 %%
 A solution to the system of differential equations is given by equation \ref{eq:rate_change_sol}
 \begin{equation}\label{eq:rate_change_sol}
-  \vec{N} =\vec{N}_{o} e^{\boldsymbol{A}t}
+  \vec{N}(t) =\vec{N}_{o} e^{\boldsymbol{A}t}
 \end{equation}
 A way to solve Equation \ref{eq:rate_change_sol} is to break the transmutation network
 into a collection of linear chains so that each isotope has one production term and
@@ -29,8 +29,7 @@ in the form of the Bateman Equation.
 \begin{equation}\label{eq:bateman}
   N_{i}(t) = \sum_{j=1}^{i} N_{j}(0)
   \Bigg[ \Bigg( \prod_{k=j}^{i-1} P_{k} \Bigg)
-  \Bigg(\sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\prod_{l=j,\neq k}^{i}(d_{l} -d_{k})}
-  \Bigg)
+  \sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\displaystyle \prod_{l=j,\neq k}^{i}(d_{l} -d_{k})}
   \Bigg]
 \end{equation}
 where $d$ represents the destruction term and $P$ the production ter term
@@ -40,10 +39,47 @@ When there is not nuclear data availble, like is the case for high energy intera
 another term is introduced in Equation \ref{eq:nuclide_conc_rc}. This term is a
 production rate constant.
 \begin{equation}\label{eq:nuclide_conc_rc_he}
-    \frac{dn_{i}(t)}{dt} = \sum_{j} n_{j}p_{j \rightarrow i, total}
-    - \sum_{j} n_{i}p_{i \rightarrow j, total} + Y_{i}
+    \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}(t)P_{j \rightarrow i, total}
+    - \sum_{j} N_{i}(t)P_{i \rightarrow j, total} + Y_{i}
 \end{equation}
 %%
 %%
-The system of differential
-
+The system of differential equations can be represented by
+Equation \ref{eq:nuclide_conc_rc_vec_he}
+\begin{equation}\label{eq:nuclide_conc_rc_vec_he}
+  \frac{d\vec{N}(t)}{dt} =\boldsymbol{A}  \vec{N}(t) + \vec{Y}
+\end{equation}
+%%
+%%
+A general solution to Equation \ref{eq:nuclide_conc_rc_vec_he} is given below
+\begin{equation}\label{eq:rate_change_sol_he}
+  \vec{N}(t) =\vec{N}_{o} e^{\boldsymbol{A}t }- \boldsymbol{A^{-1}} \vec{Y}
+\end{equation}
+If we apply the linear chain method, then the solution is given by Equation
+\ref{eq:bateman_he}
+\begin{equation}\label{eq:bateman_he}
+  \begin{aligned}
+  N_{i}(t) = &\sum_{j=1}^{i} N_{j}(0)
+  \Bigg[ \Bigg( \prod_{k=j}^{i-1} P_{k} \Bigg)
+  \sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\displaystyle \prod_{l=j, \neq k}^{i}
+  (d_{l} -d_{k})}
+  \Bigg] + &&\\
+  &\sum_{j=1}^{i} Y_{j} \Bigg[ \Bigg(\prod_{k=j}^{i-1} P_{k} \Bigg)
+  \Bigg(\sum_{k=j}^{i} \frac{1}{\displaystyle \prod_{m=j}^{i} B_{m}} -
+  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{B_{k} \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg)\Bigg]
+  \end{aligned}
+\end{equation}
+%%
+Another version
+\begin{equation}\label{eq:bateman_he_2}
+  N_{i}(t) = \sum_{j=1}^{i}
+  \Bigg( \prod_{k=j}^{i-1} P_{k} \Bigg)
+  \Bigg[ N_{j}(0) \Bigg(\sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\displaystyle
+  \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg) + Y_{j}
+  \Bigg( \frac{1}{\displaystyle \prod_{m=j}^{i} B_{m}} -
+  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{B_{k}
+  \prod_{\displaystyle l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg)\Bigg]
+\end{equation}
