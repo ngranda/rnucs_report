@@ -1,0 +1,25 @@
+\section{Nuclide concetration equations}
+This section is primarily to write out equations that might be
+important to include when talking about the mesh radionuclide
+workflow. 
+%%
+%%
+The rate of change of nuclear concentration is given by
+\begin{equation}\label{eq:nuclide_conc_rc}
+    \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}P_{j \rightarrow i, total}
+    - \sum_{j} N_{i}P_{i \rightarrow j, total}
+\end{equation}
+%%
+%%
+A vector form is given by
+\begin{equation}\label{eq:nuclide_conc_rc_vec}
+  \frac{d\vec{N}}{dt} =\boldsymbol{A}  \vec{N}(t)
+\end{equation}
+%%
+%%
+A solution to the system of differential equations is given by equation \ref{eq:rate_change_sol}
+\begin{equation}\label{rate_change_sol}
+  \vec{N} =\vec{N}_{o} e^{\boldsymbol{A}t}
+\end{equation}
+The analytical solution is given by the Bateman equations
+
