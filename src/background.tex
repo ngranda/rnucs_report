@@ -15,8 +15,8 @@ difference between the production rate and destruction rate of that nuclide.
 The rate in which a nuclide undergoes transmutation to some other nuclide
 is proportional to its concentration. 
 \begin{equation}\label{rate_change_i}
-  \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}P_{j \rightarrow i, total}
-  - \sum_{j} N_{i}P_{i \rightarrow j, total}
+  \frac{dN_{i}(t)}{dt} = \sum_{j} N_{j}(t)P_{j \rightarrow i, total}
+  - \sum_{j} N_{i}(t)P_{i \rightarrow j, total}
 \end{equation}
 Transmutation can occur via a nuclear reaction or a decay. The total
 proportionality constant is given by Equation \ref{total_p_const}.
@@ -29,7 +29,7 @@ Equation \ref{reaction_p_const}
 \begin{equation}\label{reaction_p_const}
   P_{i \rightarrow j, reaction } =
   \int_{E_{n}} \sigma_{i \rightarrow j}(E_{n})
-  \phi_{n}dE_{n}
+  \phi_{n}(E_n)dE_{n}
 \end{equation}
 where $\sigma_{i \rightarrow j}(E_{n})$ is the microscopic cross
 section for the reaction that transforms nuclide $i$ into $j$, and
@@ -46,13 +46,13 @@ Equation \ref{rate_change_i} can be expressed as
 a systems of linear differential equations and is represented by Equation
 \ref{rate_change_all}
 \begin{equation}\label{rate_change_all}
-  \frac{d\vec{N}}{dt} =\boldsymbol{A}  \vec{N}(t)
+  \frac{d\vec{N}(t)}{dt} =\boldsymbol{A}  \vec{N}(t)
 \end{equation}
 where $\vec{N}(t)$ is the vector of all nuclide concentration and $boldsymbol{A}$
 is the transfer matrix of production and destruction rates. The solution to this
 system of equations is given by Equation \ref{rate_change_sol}.
 \begin{equation}\label{rate_change_sol}
-  \vec{N} =\vec{N}_{o} e^{\boldsymbol{A}t}
+  \vec{N}(t) =\vec{N}_{o} e^{\boldsymbol{A}t}
 \end{equation}
 
 
