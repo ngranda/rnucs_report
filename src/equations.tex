@@ -65,8 +65,8 @@ If we apply the linear chain method, then the solution is given by Equation
   (d_{l} -d_{k})}
   \Bigg] + &&\\
   &\sum_{j=1}^{i} Y_{j} \Bigg[ \Bigg(\prod_{k=j}^{i-1} P_{k} \Bigg)
-  \Bigg(\sum_{k=j}^{i} \frac{1}{\displaystyle \prod_{m=j}^{i} B_{m}} -
-  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{B_{k} \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg(\sum_{k=j}^{i} \frac{1}{\displaystyle \prod_{m=j}^{i} d_{m}} -
+  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{d_{k} \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
   \Bigg)\Bigg]
   \end{aligned}
 \end{equation}
@@ -78,8 +78,63 @@ Another version
   \Bigg[ N_{j}(0) \Bigg(\sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\displaystyle
   \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
   \Bigg) + Y_{j}
-  \Bigg( \frac{1}{\displaystyle \prod_{m=j}^{i} B_{m}} -
-  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{B_{k}
-  \prod_{\displaystyle l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg( \frac{1}{\displaystyle \prod_{m=j}^{i} d_{m}} -
+  \sum_{k=j}^{i} \frac{e^{-d_{k}t}}{d_{k}
+  \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
   \Bigg)\Bigg]
+\end{equation}
+%%
+%%
+%% CINDER
+Cinder solves this equation with a few simplications. The following identities were used to
+simplify the algorithm.
+\begin{equation}\label{eq:simplification1}
+  \frac{1}{\displaystyle \prod_{m=j}^{i} d_{m}} \equiv
+  \sum_{k=j}^{i} \frac{1}{d_{k}
+  \displaystyle \prod_{ l=j, \neq k}^{i}(d_{l} -d_{k})}
+\end{equation}
+%%
+\begin{equation}\label{eq:simplification2}
+  \sum_{k=j}^{i} \frac{1}{
+  \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})} \equiv 0
+\end{equation}
+%%
+%%
+Equation \ref{eq:bateman_he2} is reduced to
+\begin{equation}\label{eq:bateman_he_simp}
+  N_{i}(t) = \sum_{j=1}^{i}
+  \Bigg( \prod_{k=j}^{i-1} P_{k} \Bigg)
+  \Bigg[ N_{j}(0) \sum_{k=j}^{i}\frac{e^{-d_{k}t}}{\displaystyle
+  \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
+  + Y_{j}
+  \sum_{k=j}^{i} \frac{1 - e^{-d_{k}t}}{d_{k}
+  \displaystyle \prod_{l=j, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg]
+\end{equation}
+CINDER90 made it so that there is no need for predefined set
+of linear chains. It tests each transmutation step for significance and
+constructs the sequences to be calculated. In order to limit the length
+of the chains followed, the algorithm only propagates the
+initial density and constant production rate to the first nuclide in the sequence.
+\begin{equation}\label{eq:bateman_he_1st_n}
+  N_{i}(t) =
+  \Bigg( \prod_{k=1}^{i-1} P_{k} \Bigg)
+  \Bigg[ N_{1}(0) \sum_{k=1}^{i}\frac{e^{-d_{k}t}}{\displaystyle
+  \prod_{l=1, \neq k}^{i}(d_{l} -d_{k})}
+  + Y_{1}
+  \sum_{k=1}^{i} \frac{1 - e^{-d_{k}t}}{d_{k}
+  \displaystyle \prod_{l=1, \neq k}^{i}(d_{l} -d_{k})}
+  \Bigg]
+\end{equation}
+%%
+%%
+which can be written as
+\begin{equation}\label{eq:bateman_he_1st_n2}
+  N_{i}(t) = \sum_{j=1}^{i}
+  \Bigg[ \frac{N_{1}(0) \displaystyle \prod_{k=1}^{i-1} P_{k}}
+  {\displaystyle \prod_{k=1, \neq j}^{i}(d_{k} -d_{j})} \Bigg]e^{-d_{j}t} +
+  \sum_{j=1}^{i}
+  \Bigg [ \frac{Y_{1} \displaystyle \prod_{k=1}^{i-1} P_{k}}
+  {\displaystyle \prod_{k=1, \neq j}^{i}(d_{k} -d_{j})} \Bigg]
+  \Bigg( \frac{1 - e^{-d_{j}t}}{d_{j}} \Bigg)
 \end{equation}
