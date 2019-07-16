@@ -72,8 +72,8 @@ conversion factors.
 \subsection{Shutdown Dose Rate for High Energy Systems}
 One of the challenges presented when doing SDR analyses in high energy systems is the 
 lack of nuclear cross-section tables in the energies higher than 20 MeV. 
-The reaction proportionality constant, Equation \ref{reaction_p_const}
-requires the neutron flux and the microscopic crossection of transmuting reaction. 
+The reaction proportionality constant, Equation \ref{reaction_p_const},
+requires the neutron flux and the microscopic cross section of transmuting reaction.
 To gap this bridge, some activation codes accept productions and destruction rates
 as their input. These production and destruction rates can be obtained from
 physics models implemented in MCNP codes.
@@ -86,10 +86,15 @@ cross sections. A reaction rate for any reaction is given by Equation
 \begin{equation}\label{reaction_rate_x}
   R_{x} = \Sigma_{x} \phi
 \end{equation}
+where $\Sigma_{x}$ is the  macroscopic cross section for reaction $x$ and
+$\phi$ is the scalar flux.
 An estimate of the reaction rate is given by Equation \ref{reaction_rate_estimate}
 \begin{equation}\label{reaction_rate_estimate}
   R_{x} = \frac{1}{W} \sum_{i \in A} w_{i}
 \end{equation}
+where $W$ is the total starting weight, $w_{i}$ is the weight before the
+collision, $i$ is the index of each event, and $A$ is the set of all events
+resulting in reaction $x$.
 The flux can be estimated from a total reaction rate as seen in Equation
 \ref{flux}
 \begin{equation}\label{flux}
