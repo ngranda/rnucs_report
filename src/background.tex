@@ -88,23 +88,31 @@ cross sections. A reaction rate for any reaction is given by Equation
 \end{equation}
 where $\Sigma_{x}$ is the  macroscopic cross section for reaction $x$ and
 $\phi$ is the scalar flux.
-An estimate of the reaction rate is given by Equation \ref{reaction_rate_estimate}
-\begin{equation}\label{reaction_rate_estimate}
+An estimate of the reaction rate is given by Equation \ref{eq:reaction_rate_estimate}
+\begin{equation}\label{eq:reaction_rate_estimate}
   R_{x} = \frac{1}{W} \sum_{i \in A} w_{i}
 \end{equation}
 where $W$ is the total starting weight, $w_{i}$ is the weight before the
 collision, $i$ is the index of each event, and $A$ is the set of all events
 resulting in reaction $x$.
-The flux can be estimated from a total reaction rate as seen in Equation
-\ref{flux}
-\begin{equation}\label{flux}
-  \phi = \frac{1}{W} \sum_{i \in A} \frac{w_{i}}{\Sigma_{t}(E_{i})}
+Equation \ref{eq:reaction_rate_estimate} is easy to implement but can have
+high variance and a better tally is needed \cite{OpenMC}.
+A collision estimator is a better reaction rate estimator.
+An estimate of the flux can be found by using the analog estimator
+for a total reaction rate.
+\begin{equation}\label{eq:flux}
+	\phi = \frac{1}{W} \sum_{i \in C} \frac{w_{i}}{\Sigma_{t}(E_{i})}
 \end{equation}
-Using Equation \ref{reaction_rate_x} and Equation \ref{flux}, we can get
-the collision estimate of the reaction rate for reaction $x$
+where $C$ is the set of all events resulting in collision with the nucleus,
+and  $\Sigma_{t}(E_{i})$ is the total macroscopic cross section of the
+target material at the incoming energy of the particle.
+From Equation \ref{reaction_rate_x} and Equation \ref{eq:flux}, we can get
+a collision estimate of the reaction rate for reaction $x$
 \begin{equation}\label{reaction_x_estimate}
   R_{x} = \frac{1}{W} \sum_{i \in A} \frac{w_{i} \Sigma_{x}(E_{i})}{\Sigma_{t}(E_{i})}
 \end{equation}
+where $\Sigma_{x}(E_{i})$ is the macroscopic cross section for reaction $x$
+at the incoming energy of the particle.
 The current SDR workflow is seen in Figure \ref{rnucs_r2s}
 \begin{figure}[h!]
 \begin{centering}
