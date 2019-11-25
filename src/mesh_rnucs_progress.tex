@@ -1,22 +1,12 @@
 \documentclass[12pt]{article}
+
+% -------- included packagaes --------------
+\usepackage{graphicx}
 \usepackage{layout} % show a page layout
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{fullpage}
-% \setlength{\hoffset}{0.0in}
-% \setlength{\oddsidemargin}{-.5in}
-% \setlength{\textwidth}{.85\paperwidth}
-
-% -------- title and author ----------------
-\title{Mesh RNUCS Progress Report}
-\author{Nancy Granda Duarte}
-\date{\today}
-
-
-% -------- included packagaes --------------
-\usepackage{graphicx}   
 \usepackage{times}
 \usepackage{microtype}  
 \usepackage{caption}    
@@ -28,12 +18,25 @@
 \usepackage{lipsum}
 \usepackage{cite}
 \usepackage{url}
+\usepackage[acronym,toc]{glossaries}
+
+
+\input{defs}
+
+% -------- title and author ----------------
+\title{Mesh RNUCS Progress Report}
+\author{Nancy Granda Duarte}
+\date{\today}
+
+
+
 % -------- Main Document -------------------
 \setcounter{section}{0}
 
 \begin{document}
 
 \maketitle
+
 \thispagestyle{empty}
 
 \clearpage\pagenumbering{roman}
@@ -49,18 +52,16 @@
 
 \clearpage\pagenumbering{arabic}
 
-
+\glsresetall
 \input{intro}
+\glsresetall
 \input{background}
 \input{software}
 \input{analysis}
 \input{results}
-\input{equations}
 \newpage
 \clearpage
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}{}
-
-
 
 \end{document}
