@@ -168,7 +168,7 @@ source.
 	\end{subfigure}\hfill
 	\begin{subfigure}[t]{1.0\textwidth}
 		\centering
-		\includegraphics[scale=0.4, trim={1cm 0cm 0.5cm 1.25cm},clip]{../figs/toy_p1/spec_VPI_8.png}
+		\includegraphics[scale=0.4, trim={2.5cm 1cm 3cm 3cm},clip]{../figs/toy_p1/spec_VPI_8.pdf}
 	\end{subfigure}
 	\caption{Photon emission density per voxel in a 2x2x2 mesh and the mercury cell}
 	\label{fig:1spec_8v}
@@ -218,6 +218,7 @@ workflow. All answers are on a Cartesian mesh of the same dimensions.
 	\end{subfigure}
 
 	\begin{subfigure}[t]{1.0\textwidth}
+		\centering
 		\includegraphics[width=\linewidth, trim={5cm 25cm 2cm 2cm},clip]{../figs/toy_p1/dose_VPI_4x_mesh.png}
 		\label{fig:1legend}
 	\end{subfigure}
@@ -225,44 +226,25 @@ workflow. All answers are on a Cartesian mesh of the same dimensions.
 	\label{fig:1dose}
 \end{figure}
 %
-Figure \ref{fig:1zscore} shows the PDF and CDF of a z-sore test comparing the
-biological dose rates obtained using a cell based source and the ones obtained
+Figure \ref{fig:1zscores} shows the \gls{pdf} and \gls{cdf} of a z-sore test comparing the
+biological dose rates per voxel obtained using a cell based source and the ones obtained
 using a mesh based source.
-\begin{figure}
-	\begin{subfigure}[h]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p1/PDF_zscore_VPI_1x_orig.pdf}
-		%\caption{PDF: 1x1x1x mesh to full geometry}
-		\label{fig:1pdf_1x_orig}
-	\end{subfigure}\hfill
-	\begin{subfigure}[h]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p1/CDF_zscore_VPI_1x_orig.pdf}
-		% \caption{CDF: 1x1x1 mesh to full geometry}
-		\label{fig:1cdf_1x_orig}
+\begin{figure}[H]
+	\begin{subfigure}[h]{1.0\textwidth}
+		\centering
+		\includegraphics[scale=0.85, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p1/PDF_zscore_VPI_all.pdf}
+		\caption{Probability Distribution Function}
+		\label{fig:1VPI_pdf}
 	\end{subfigure}
-
-	\begin{subfigure}[h]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p1/PDF_zscore_VPI_2xm_2xs.pdf}
-		% \caption{2x2x2 divided}
-		\label{fig:1dose_2x_split}
-	\end{subfigure}\hfill
-	\begin{subfigure}[h]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p1/CDF_zscore_VPI_2xm_2xs.pdf}
-		% \caption{2x2x2 mesh}
-		\label{fig:1dose_2x_mesh}
+	\hfill
+	\begin{subfigure}[h]{1.0\textwidth}
+		\centering
+		\includegraphics[scale=0.85, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p1/CDF_zscore_VPI_all.pdf}
+		\caption{Cumulative Distribution Function}
+		\label{fig:1VPI_cdf}
 	\end{subfigure}
-
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p1/PDF_zscore_VPI_4xm_4xs.pdf}
-		% \caption{4x4x4 divided}
-		\label{fig:1dose_4x_split}
-	\end{subfigure}\hfill
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p1/CDF_zscore_VPI_4xm_4xs.pdf}
-		% \caption{4x4x4 mesh}
-		\label{fig:1dose_4x_mesh}
-	\end{subfigure}
-	\caption{Z scores PDF and CDF comparing the results for the mesh to respective divided geometry }
-	\label{fig:1zscore}
+	\caption{PDF and CDF of the z-value of each mesh voxel when comparing the cell workflow to the mesh workflow}
+	\label{fig:1zscores}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%
@@ -271,101 +253,126 @@ using a mesh based source.
 
 \subsubsection{Verification Problem II}
 Similar analysis were done for the second verification problem. Figure
-\ref{fig:2prod_cell_1x_2x_4x} show the results collected in the mercury and
-steel cell as well as the results for the three meshes. The results for the
-mercury and steel cell were added and the results of each voxel in mesh were
-added to directly compare the total results.
+\ref{fig:2prod_cell_1x_2x_4x} shows the combined isotope production collected
+in the mercury and steel volumes, and the isotope production combined for all
+voxels in each of the meshes. The bottom graph shows the relative change when
+comparing each of the meshes to the isotope production collected in both cells.
+The relative change between the isotope production collected in a mesh compared
+to the one collected in the cell are mostly within statistic agreement. There
+some isotopes that are different.
 %
-\begin{figure}[h!]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 1cm 3cm 2cm},clip]{../figs/toy_p2/prod_VPII_1x_2x_4x.pdf}
  \caption{Radionuclide production for mercury/steel cells and Cartesian meshes}
  \label{fig:2prod_cell_1x_2x_4x}
 \end{figure}
 %
-\\
-Figure \ref{fig:2prod_cell_2x} compares the results collected in the geometric
-cell, the summed up results of the 2x2x2 mesh and the 2x2x2 divided geometry.
+Figure \ref{fig:2prod_cell_2x} compares the isotope production collected in the
+mercury and steel volumes to the summed up results of a 2x2x2 mesh and the 2x2x2
+divided geometry. In this case, one can see great differences in the divided
+geometry. This is likely due to having to mix materials during the
+neutron/proton transport for the divided geometry while the original problem
+and the mesh did not have to mix materials in this step.
+Figure \ref{fig:2prod_cell_2x_r} show the relative difference between the
+divided geometry and the original problem, as well as the relative difference
+between the mesh and the original problem. Both as functions of the isotope
+production results obtained in the mercury and steel volume.
 %
-\begin{figure}[h!]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 1cm 3cm 2cm},clip]{../figs/toy_p2/prod_VPII_2x.pdf}
  \caption{Radionuclide production mercury/steel cells, 2x2x2 mesh, and 2x2x2 divided geometry}
  \label{fig:2prod_cell_2x}
 \end{figure}
 %
-\\
-A similar comparison was made for the 4x4x4 mesh and the 4x4x4 divided geometry
-which can be seen in Figure \ref{fig:2prod_cell_4x}
+\begin{figure}[H]
+ \centering
+ \includegraphics[scale=0.4,trim={3cm 0.5cm 3cm 3cm},clip]{../figs/toy_p2/prod_VPII_rc_2x_split.pdf}
+ \caption{Relative change between cell method and 2x2x2 geometry split vs. the isotope production of the mercury cell}
+ \label{fig:2prod_cell_2x_rc}
+\end{figure}
 %
-\begin{figure}[h!]
+Figure \ref{fig:2prod_cell_4x} shows a similar comparing as Figure
+\ref{fig:2prod_cell_2x} but for the 4x4x4 mesh and the 4x4x4 divided geometry.
+The behavior of the relative change seen at the bottom of the graph is similar
+to the behavior seem in a similar analysis done for the first problem.
+A graph comparing the relative change between the results collected in the
+divided geometry, and in the mercury and steel volumes, as well as the relative
+difference between the information collected in the 4x4x4 mesh and the
+information collected in the mercury and steel cell. Both as a function of the
+the isotope production results obtained in the mercury and steel volume.
+%
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 1cm 3cm 2cm},clip]{../figs/toy_p2/prod_VPII_4x.pdf}
  \caption{Radionuclide production for mercury/steel cells, 4x4x4 mesh, and 4x4x4 divided geometry}
  \label{fig:2prod_cell_4x}
 \end{figure}
 %
-\\
-Figure \ref{fig:2prod_cell_1x_2x_4x} shows most nuclides have a small relative
-change. There are a few nuclides that greater than 10\% relative change.
-Figure \ref{fig:2prod_cell_2x} shows that many nuclides resulting from the
-divided geometry have extremely high relative change. This is largely due to
-having to mix the mercury and steel materials in the neutron transport. Lastly
-Figure \ref{fig:2prod_cell_4x} shows results similar to the results obtained in
-the first verification problem.
-%
-\begin{figure}[h!]
- \centering
- \includegraphics[scale=0.4,trim={3cm 0.5cm 3cm 3cm},clip]{../figs/toy_p2/prod_VPII_rc_2x_split.pdf}
- \caption{Relative change between cell method and 2x2x2 geometry split vs. the isotope production of the mercury cell}
- \label{fig:2prod_cell_2x_rc}
-\end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.4,trim={3cm 0.5cm 3cm 3cm},clip]{../figs/toy_p2/prod_VPII_rc_4x_split.pdf}
  \caption{Relative change between cells and 4x4x4 geometry split vs. the isotope production of the mercury cell}
  \label{fig:2prod_cell_4x_rc}
 \end{figure}
 %
-\\
-\begin{figure}[h!]
+Figure \ref{fig:2spec_cell_1x_2x_4x} shows the photon density emission
+collected in the mercury and steel volumes, and each of the meshes. The bottom
+graph in the same figure shows the relative change when comparing the results
+averaged over each of the meshes to the results of the mercury and steel cells.
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 0.5cm 3cm 2cm},clip]{../figs/toy_p2/spec_VPII_1x_2x_4x.pdf}
  \caption{Photon Spectrum in mercury/steel cell and different meshes}
  \label{fig:2spec_cell_1x_2x_4x}
 \end{figure}
 %
-A comparison between the results in the mesh and the split geometry can be seen
-in Figure \ref{fig:2spec_cell_2x} and \ref{fig:2spec_cell_4x}.
+When comparing the photon emission density collected in the divided geometry
+to the photon density collected in the mercury and steel, we can see that
+there some large discrepancy between some of the results. This can be seen in
+Figure \ref{fig:2spec_cell_2x}. Figure \ref{fig:2spec_cell_4x} shows similar
+for the 4x4x4 divided geometry. In this case, the relative difference is a lot
+smaller.
 %
-\begin{figure}[h!]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 0.5cm 3cm 2cm},clip]{../figs/toy_p2/spec_VPII_2x.pdf}
  \caption{Photon Spectrum in mercury cell, 2x2x2 mesh, and geometry split}
  \label{fig:2spec_cell_2x}
 \end{figure}
 %
-\begin{figure}[h!]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=0.42,trim={2cm 0.5cm 3cm 2cm},clip]{../figs/toy_p2/spec_VPII_4x.pdf}
  \caption{Photon Spectrum in mercury/steel cell, 4x4x4 mesh, and geometry split}
  \label{fig:2spec_cell_4x}
 \end{figure}
 %
-
-
-Figure \ref{fig:2spec_8v} shows the results per voxel for a 2x2x2 mesh.
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.3, trim={0cm 0cm 0cm 1cm},clip]{../figs/toy_p2/spec_VPII_8.png}
-	\caption{No sure}
-	\label{fig:2spec_8v}
+Figure \ref{fig:2spec_8v} shows photon emission density per voxel for a
+2x2x2 mesh, and for combined mercury and steel cell. This graph shows higher
+photon emission density for voxels 1, 3, 5, and 7 which are the voxels closer
+to the proton source in the configuration of the first transport.
+\begin{figure}[H]
+        \begin{subfigure}[t]{1.0\textwidth}
+                \hfill
+                \includegraphics[scale=0.4, trim={0cm 0cm 0cm 0cm},clip]{../figs/voxels.png}
+        \end{subfigure}\hfill
+        \begin{subfigure}[t]{1.0\textwidth}
+                \centering
+                \includegraphics[scale=0.4, trim={2.5cm 1cm 3cm 3cm},clip]{../figs/toy_p2/spec_VPII_8.pdf}
+        \end{subfigure}
+        \caption{Photon emission density per voxel in a 2x2x2 mesh and the mercury/steel volumes}
+        \label{fig:2spec_8v}
 \end{figure}
-\\
-The biological dose was then calculated using the photon emission density.
-Figures \ref{fig:2dose}
 %
-\begin{figure}
+The photon emission density collected using the cells of the original problem,
+the cells of the divided geometry, and the superimposed mesh was used as the
+photon source in the photon transport.
+The biological dose rate was collected in a superimposed mesh spanning the
+entire geometry.
+%
+\begin{figure}[H]
 	\begin{subfigure}[t]{0.5\textwidth}
 		\includegraphics[width=\linewidth, trim={8cm 2cm 2cm 10cm},clip]{../figs/toy_p2/dose_VPII_original.png}
 		\caption{full geometry}
@@ -400,50 +407,30 @@ Figures \ref{fig:2dose}
 	\end{subfigure}
 
 	\begin{subfigure}[t]{1.0\textwidth}
+		\centering
 		\includegraphics[width=\linewidth, trim={8cm 26cm 2cm 2cm},clip]{../figs/toy_p2/dose_VPII_4x_mesh.png}
 		\label{fig:2legend}
 	\end{subfigure}
 	\caption{Biological dose rate on the mercury and steel cell with mesh and divided geometry}
 	\label{fig:2dose}
 \end{figure}
-\\
 A z score was done to compare between the results from the mesh workflow and the results
-obtained with the cell based workflow. The results can be seen in Figure \ref{fig:}
-
-\begin{figure}
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p2/PDF_zscore_VPII_1x_orig.pdf}
-		%\caption{PDF: 1x1x1x mesh to full geometry}
-		\label{fig:2pdf_1x_orig}
-	\end{subfigure}\hfill
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p2/CDF_zscore_VPII_1x_orig.pdf}
-		% \caption{CDF: 1x1x1 mesh to full geometry}
-		\label{fig:2cdf_1x_orig}
+obtained with the cell based workflow. The results can be seen in Figure \ref{fig:2zscores}
+%
+\begin{figure}[H]
+	\begin{subfigure}[h]{1.0\textwidth}
+		\centering
+		\includegraphics[scale=0.85, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p2/PDF_zscore_VPII_all.pdf}
+		\caption{Probability Density Function}
+		\label{fig:2VPII_pdf}
 	\end{subfigure}
-
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p2/PDF_zscore_VPII_2xm_2xs.pdf}
-		% \caption{2x2x2 divided}
-		\label{fig:2dose_2x_split}
-	\end{subfigure}\hfill
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p2/CDF_zscore_VPII_2xm_2xs.pdf}
-		% \caption{2x2x2 mesh}
-		\label{fig:2dose_2x_mesh}
+	\begin{subfigure}[h]{1.0\textwidth}
+		\centering
+		\includegraphics[scale=0.85, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p2/CDF_zscore_VPII_all.pdf}
+		\caption{Probability Density Function}
+		\label{fig:2VPII_cdf}
 	\end{subfigure}
-
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.9cm},clip]{../figs/toy_p2/PDF_zscore_VPII_4xm_4xs.pdf}
-		% \caption{4x4x4 divided}
-		\label{fig:2dose_4x_split}
-	\end{subfigure}\hfill
-	\begin{subfigure}[t]{0.5\textwidth}
-		\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0.8cm},clip]{../figs/toy_p2/CDF_zscore_VPII_4xm_4xs.pdf}
-		% \caption{4x4x4 mesh}
-		\label{fig:2dose_4x_mesh}
-	\end{subfigure}
-	\caption{Z scores PDF and CDF comparing the results for the mesh to respective divided geometry }
-	\label{fig:2z_score}
+	\caption{PDF and CDF of the z-value of each mesh voxel when comparing the cell workflow to the mesh workflow}
+	\label{fig:2z-scores}
 \end{figure}
 \newpage
