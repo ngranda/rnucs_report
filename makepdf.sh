@@ -9,5 +9,3 @@ rm -rf *idx *out *.lof *.log *.lot *.dvi *.toc *.bbl *.blg *.aux
 
 mv mesh_rnucs_progress.pdf ../
 cd ../
-
-evince mesh_rnucs_progress.pdf
