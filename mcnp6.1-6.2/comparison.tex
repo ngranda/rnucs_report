@@ -19,3 +19,18 @@ dependent in the y position.
         \caption[VPI]{Planar view of the testing geometry}
         \label{fig:merbox.png}
 \end{figure}
+
+
+\subsection{MCNP Transport}
+A transport calculation was performed using MCNP6.1 and MCNP6.2.
+1E8 particles, and the geomtry previously presented. 
+The isotope production and destruction in the mercury volume was collected
+using the rnucs tally. 
+Figures \ref{fig:prod} and \ref{fig:dest}  show the isotope production
+and isotope destruction collected in the mercury volume. These figures also
+show the relative difference between the results collected in MCNP6.1
+and MCNP6.2. 
+The relative difference is given by the following equation:
+\begin{equation}
+	\frac{MCNP6.2 - MCNP6.1}{MCNP6.1}.
+\end{equation}
