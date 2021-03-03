@@ -1,16 +1,17 @@
 \section{INTRODUCTION}
 
-This document serves as formal documentation of the implementation of
-the \textit{rnucs} tally in MCNP6.2. A comparison to the implemention
-in MCNP6.1 will be shown in this document. 
+The \textit{rnucs} tally has been implemented in MCNP6.2. In order
+to assess the correct implemetation of the tally, a quantitative
+comparison to the tally implemented in MCNP6.1 has been performed.
 
 \section{COMPARISON OF RNUCS IN MCNP6.1 AND MCNP6.2}
 
 \subsection{Geometry}
-A simple geometry was selected and can be seen in Figure \ref{fig:merbox.png}.
+A simple geometry was selected for this comparison. 
+The geometry consist of a single mercury volume as can be seen in Figure \ref{fig:merbox.png}.
 A Gaussian distribution centered around 1GeV proton source was used. 
 The source is located in the xy plane at z = -256.71 cm, where the x position is
-dependent in the y position. 
+dependent on the y position. 
 
 
 \begin{figure}[h!]
@@ -22,10 +23,9 @@ dependent in the y position.
 
 
 \subsection{MCNP Transport}
-A transport calculation was performed using MCNP6.1 and MCNP6.2.
-1E8 particles, and the geomtry previously presented. 
-The isotope production and destruction in the mercury volume was collected
-using the rnucs tally. 
+A transport calculation was performed with MCNP6.1 and MCNP6.2 and 1E8 histories.
+The \textit{rnucs} tally was used in both calculaitons to obtain
+the isotope production and destruction in the mercury volume
 Figures \ref{fig:prod} and \ref{fig:dest}  show the isotope production
 and isotope destruction collected in the mercury volume. These figures also
 show the relative difference between the results collected in MCNP6.1
@@ -50,12 +50,14 @@ The relative difference is given by the following equation:
         \label{fig:dest}
 \end{figure}
 
-Figure \ref{fig:prod} shows a more significant difference than those in
-Figure \ref{fig:dest}. In order to better understand the importance of
+Figure \ref{fig:prod} shows that for many isotopes the isotope 
+production obtained in MCNP6.2 is significantly different than the
+isotope production obatined in MNCP6.1. 
+To better understand the importance of
 the difference, a graph representing the relative difference versus the
-isotope production data is shown in Figure \ref{fig:reldiff}. This 
-figure shows a correlation between the high relative difference and
-low isotope production.
+isotope production data in MCNP6.1 is shown in Figure \ref{fig:reldiff}. This 
+figure tells us that most of the isotopes with high relative difference
+have a low isotope production.
 
 \begin{figure}[h!]
         \centering
@@ -64,12 +66,15 @@ low isotope production.
         \label{fig:reldiff}
 \end{figure}
 
-Another metric used to compare the results is the Z-Score. A Z-score
-is a quantity that tells us how many sigmas a value is from a population
-mean. For this comparison, two sample means are compare and the following
+Another metric used in this work to compare the results is the Z-Score quatity.
+A Z-score
+is a quantity that tells us how many standard deviations a value is from a
+population
+mean. In this comparison, two sample means are compare and the following
 equation was used. 
-\begin{equation}
-        z = \frac{\bar{x} - \mu }{\sigma / \sqrt{n}}
+\begin{equation}\label{eq:ztest}
+        z = \frac{(\bar{x}_{1} - \bar{x_{2}}) - (\mu_{1} - \mu_{2}) }
+            {\sqrt{\frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}} }}
 \end{equation}
 where
 \begin{equation}
@@ -80,4 +85,24 @@ where
         n       &= \text{Sample size}
 \end{split}
 \end{equation}
+
+Figure \ref{fig:pdf} shows the PDF of Z-scores when comparing 
+the isotope production of MNCP6.1 and MCNP6.2. 
+\begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.4]{figs/PDF.pdf}
+        \caption{Z-scores PDF }
+        \label{fig:reldiff}
+\end{figure}
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|}
+ \hline
+ voxels with: & z $\leq 1 \sigma$ & z $\leq 2 \sigma$ & z $\leq 3 \sigma$ \\
+ \hline \hline
+              & 85.03 \%          & 94.29 \%          & 95.96 \%           \\
+ \hline
+\end{tabular}
+\end{center}
 
